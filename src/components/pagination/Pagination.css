@@ -1,0 +1,12 @@
+ul.pagination {
+  display: flex;
+  list-style-type: none;
+  gap: 1rem;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  flex-wrap: wrap;
+}
+.page-link {
+  padding: 0.5rem 0.75rem;
+  background-color: #fafafa;
+}

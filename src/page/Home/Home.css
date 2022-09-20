@@ -1,0 +1,36 @@
+.container_Home {
+  display: flex;
+  flex-direction: column;
+}
+.header_home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: #ededed;
+}
+.seconde_part {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 40%;
+}
+.tabledrivergrid {
+  margin-top: 0.5rem;
+  width: 1300px !important;
+  display: flex;
+  justify-content: space-between !important;
+  flex-direction: column;
+}
+.table_Trade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.addBtnadmin:hover {
+  background-color: #455cc7 !important ;
+}
+.logout {
+  cursor: pointer;
+}
