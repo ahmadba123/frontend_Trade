@@ -18,7 +18,7 @@ function Home() {
   const [countTrade, setCountTrade] = useState([]);
   const [open, setOpen] = useState(false)
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(20);
+  const [postsPerPage] = useState(10);
   const [query, setQuery] = useState("");
 
   const navigate = useNavigate();
