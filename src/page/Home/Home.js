@@ -7,33 +7,41 @@ import moment from 'moment';
 import { useNavigate } from "react-router-dom";
 import Pagination from '../../components/pagination/Pagination';
 import AddTrade from '../../components/AddTrade/AddTrade';
-import {Grid , GridColumn} from "@progress/kendo-react-grid";
+import { Grid, GridColumn } from "@progress/kendo-react-grid";
 import { FiLogOut } from "react-icons/fi";
 import Swal from "sweetalert2";
 import logo from '../../pic/images-removebg-preview.png'
 
 
 function Home() {
-  const [trades, setTrades] = useState([]);
   const [tradesSearch, setTradesSearch] = useState([]);
   const [countTrade, setCountTrade] = useState([]);
   const [open, setOpen] = useState(false)
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [postsPerPage] = useState(20);
+  const [query, setQuery] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
     getAllData();
+
   }, [currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    getAllData();
+
+  }, [query]);
+
 
   //this function for get all data in Trades
   const getAllData = async () => {
     try {
 
       await axios
-        .get(`http://localhost:3000/?limit=${postsPerPage}&offset=${currentPage}`)
+        .get(`http://localhost:3000/?limit=${postsPerPage}&offset=${currentPage}&query=${query}`)
         .then((res) => {
-          setTrades(res.data.Trades);
           setTradesSearch(res.data.Trades)
           setCountTrade(res.data.countTrade[0]["COUNT(Deal)"])
           // console.log(res.data.countTrade[0]["COUNT(Deal)"])
@@ -52,25 +60,11 @@ function Home() {
     localStorage.removeItem("token");
     navigate('/')
   }
-    // this function for input search to filter by (Symbol,Deal,Login)
+  // this function for input search to filter by (Symbol,Deal,Login)
   const setInputsearch = (value) => {
-    // console.log("value:", value)
-    const searchedData = trades.filter((val) => {
-      if (value === "") {
-        return val;
-      }
-      if (val.Symbol.toLowerCase().includes(value.toLowerCase())) {
-        return val;
-      }
-
-      else if (val.Deal.toString().includes(value.toString())) {
-        return val;
-      }
-      else if (val.Login.toString().includes(value.toString())) {
-        return val;
-      }
-    })
-    setTradesSearch(searchedData)
+    setQuery(value);
+    setCurrentPage(1);
+    // getAllData();
   }
 
   //this function for add new Trade
@@ -122,15 +116,14 @@ function Home() {
 
   return (
     <div className='container_Home'>
-    {/* part header */}
+      {/* part header */}
       <div className='header_home'>
         <div className='logo'>
-        <img src={logo} alt="logo" width={180} className="logoNavBar" />
+          <img src={logo} alt="logo" width={180} className="logoNavBar" />
         </div>
         <div className='seconde_part' >
           <Button
-            sx={{ color: "white", background: "#455CC7" }}
-            variant="outlined"
+          className='buttonAdd'
             onClick={addNewTrade}
           >
             + new trade
@@ -149,7 +142,7 @@ function Home() {
           />
         </div>
       </div>
-    {/* part table */}
+      {/* part table */}
       <div className='table_Trade'>
         <Grid className='tabledrivergrid'
           data={tradesSearch} >
@@ -167,14 +160,14 @@ function Home() {
             title="Time" width="176.8px" className='fieldTable' />
         </Grid>
       </div>
-    {/* part Pagination */}
+      {/* part Pagination */}
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={countTrade}
         paginate={setCurrentPage}
         currentPage={currentPage}
       />
-    {/* part add new trade */}
+      {/* part add new trade */}
       {open && <AddTrade
         handleClose={() => setOpen(false)}
         addNewTrade={addNewTrade}

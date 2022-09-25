@@ -1,10 +1,12 @@
 .css-1my58jm-MuiInputBase-root .MuiInputBase-input {
-    background-color: #b3afaf;
-    border-radius: 10px ;
-
-}
-.css-1iz4iln{
+    background-color: rgb(187, 180, 180);
     color: white;
+    border-radius: 10px ;
+    border-color:  #455cc7 !important;
+}
+
+.css-1iz4iln{
+    color:  #455cc7;
     z-index: 1 !important;
 
 }

@@ -52,6 +52,7 @@
 .buttonSubmit {
   background-color: #455cc7 !important;
   margin-top: 0.5em !important ;
+  width: 100%;
 }
 .logoLogin {
   width: 250px;
@@ -94,3 +95,4 @@
   align-items: flex-start;
   width: 400px;
 }
+

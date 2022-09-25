@@ -197,6 +197,7 @@ const Login = () => {
                 />
                 {/* end password */}
                 {/* button sginin */}
+                <div className="grpBtn">
                 <Button variant="contained"
                   className="buttonSubmit"
                   onClick={handelLogin}
@@ -211,6 +212,7 @@ const Login = () => {
                 >
                   signup
                 </Button>
+                </div>
               </FormControl>
             </Box>
             {open && <Signup

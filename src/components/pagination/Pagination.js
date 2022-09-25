@@ -25,13 +25,13 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
             size={40}
             color="#455CC7"
             className='pafinationIcon'
-            onClick={() => paginate(currentPage - 1)}>
+            onClick={() => paginate(currentPage - 10)}>
           </CgChevronLeftO>
         </li>
         <li className='page-item'>
           <CgChevronRightO
             size={40}
-            onClick={() => paginate(currentPage + 1)}
+            onClick={() => paginate(currentPage + 10)}
             color="#455CC7">
           </CgChevronRightO>
         </li>
